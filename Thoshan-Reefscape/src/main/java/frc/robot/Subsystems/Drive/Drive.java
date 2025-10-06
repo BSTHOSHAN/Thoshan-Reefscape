@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.XboxController;
 public class Drive extends Subsystem<DriveStates>{
     
     XboxController xboxController = new XboxController(0);
-    Drive io;
+    DriveIO io;
     private static Drive instance;
     private Drive() {
         super("Drive", DriveStates.DRIVE_NORMAL);
@@ -24,12 +24,14 @@ public class Drive extends Subsystem<DriveStates>{
         }
         return instance;
     }
-
-
+    
 
     @Override
     protected void runState() {
         io.setTranslationalMultiplier(getState().transitionalMultiplier);
+        io.setRotMultiplier(getState().rotMultiplier);
+        io.driveCommands(xboxController.getLeftX(), xboxController.getLeftY(), xboxController.getRightX(), true);
+        io.logData();
     }
     
     
