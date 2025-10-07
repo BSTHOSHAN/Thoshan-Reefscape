@@ -1,13 +1,13 @@
-package frc.robot.Subsystems.Elavator;
+package frc.robot.Subsystems.Elevator;
+
+import static frc.robot.Subsystems.Elevator.ElevotorConstants.*;
 
 import org.team7525.subsystem.SubsystemStates;
 
 import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.units.measure.Distance;
 
-import static frc.robot.Subsystems.Elavator.ElavotorConstants.*;
-
-public enum ElavotorStates implements SubsystemStates{
+public enum ElevatorStates implements SubsystemStates{
     IDLE(IDLE_HEIGHT),
     L1(L1_HEIGHT),
     L2(L2_HEIGHT),
@@ -19,7 +19,7 @@ public enum ElavotorStates implements SubsystemStates{
 
     private Distance position;
 
-    private ElavotorStates(Distance position) {
+    private ElevatorStates(Distance position) {
         this.position = position;
     }
 

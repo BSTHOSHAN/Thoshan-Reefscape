@@ -4,7 +4,6 @@ import static frc.robot.GlobalConstants.ROBOT_MODE;
 
 import org.team7525.subsystem.Subsystem;
 
-import frc.robot.Subsystems.Climber.Climber;
 
 public class Algaer extends Subsystem<AlgaerStates> {
     
