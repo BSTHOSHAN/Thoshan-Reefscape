@@ -6,6 +6,7 @@ import static frc.robot.Subsystems.Coaraler.CoaralerConstants.*;
 
 import org.littletonrobotics.junction.Logger;
 
+import com.ctre.phoenix6.hardware.TalonFX;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 
@@ -13,12 +14,12 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.units.measure.AngularVelocity;
 
 public class CoaralerIONeo implements CoaralerIO{
-    SparkMax wheelMotor;
+    TalonFX wheelMotor;
     PIDController wheelController;
     AngularVelocity targetSpeed;
 
     public CoaralerIONeo() {
-        wheelMotor = new SparkMax(WHEEL_MOTOR_ID, MotorType.kBrushless);
+        wheelMotor = new TalonFX(WHEEL_MOTOR_ID);
 
         wheelController = WHEEL_CONTROLLER.get();
     }
@@ -27,13 +28,13 @@ public class CoaralerIONeo implements CoaralerIO{
     public void setWheelSpeed(AngularVelocity wheelSpeed) {
         targetSpeed = wheelSpeed;
 
-        wheelMotor.set(wheelController.calculate(wheelMotor.getAbsoluteEncoder().getVelocity() / 60, wheelSpeed.in(RotationsPerSecond)));
+        wheelMotor.set(wheelController.calculate(wheelMotor.getVelocity().getValueAsDouble() / 60, wheelSpeed.in(RotationsPerSecond)));
 
     }
 
     @Override
     public void logData() {
-        Logger.recordOutput("Coaraler/Wheel Speed", wheelMotor.getAbsoluteEncoder().getVelocity());
+        Logger.recordOutput("Coaraler/Wheel Speed", wheelMotor.getVelocity().getValueAsDouble());
         Logger.recordOutput("Coaraler/Target Speed", targetSpeed);
     }
 

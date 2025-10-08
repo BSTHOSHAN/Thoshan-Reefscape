@@ -14,7 +14,7 @@ public class PassThroughConstants {
     public static final AngularVelocity IDLE_WHEEL_SPEED = RotationsPerSecond.of(0);
     public static final AngularVelocity INTAKING_WHEEL_SPEED = RotationsPerSecond.of(-0.7);
 
-    public static final int POSITION_MOTOR_ID = 29;
+    public static final int PASS_THROUGH_MOTOR_ID = 29;
 
     	public static final Supplier<PIDController> WHEEL_SPEED_CONTROLLER = () ->
 		switch (ROBOT_MODE) {
