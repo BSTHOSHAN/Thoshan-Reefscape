@@ -13,11 +13,11 @@ import swervelib.parser.SwerveParser;
 import static frc.robot.Subsystems.Drive.DriveConstants.*;
 public class DriveIOReal implements DriveIO{
     SwerveDrive swerveDrive;
-    double translationalonalMultiplier;
+    double translationalMultiplier;
     double rotMultiplier;
 
     public DriveIOReal() {
-        		try {
+        try {
 			File directory = new File(Filesystem.getDeployDirectory(), "swerve");
 			double maxSpeed = Units.feetToMeters(MAX_SPEED);
 			swerveDrive = new SwerveParser(directory).createSwerveDrive(maxSpeed, STARTING_POSE);
@@ -28,7 +28,7 @@ public class DriveIOReal implements DriveIO{
 
     @Override
     public void setTranslationalMultiplier(double translationalonalMultiplier) {
-        this.translationalonalMultiplier = translationalonalMultiplier;
+        this.translationalMultiplier = translationalonalMultiplier;
     }
 
     @Override
@@ -37,13 +37,13 @@ public class DriveIOReal implements DriveIO{
     }
 
     @Override
-    public void driveCommands(double xtranslation, double ytranslation, double rotation, boolean fieldrelative) {
-        swerveDrive.drive(new Translation2d(translationalonalMultiplier * xtranslation, translationalonalMultiplier * ytranslation), rotMultiplier * rotation, fieldrelative, false);
+    public void driveCommands(double xtranslation, double ytranslation, double rotation, boolean fieldrelative) { //camel case pls
+        swerveDrive.drive(new Translation2d(translationalMultiplier * xtranslation, translationalMultiplier * ytranslation), rotMultiplier * rotation, fieldrelative, false);
     }
 
     @Override
     public void logData() {
-        Logger.recordOutput("Drive/ Translational Multiplier", translationalonalMultiplier);
+        Logger.recordOutput("Drive/ Translational Multiplier", translationalMultiplier);
         Logger.recordOutput("Drive/ Rotational Multiplier", rotMultiplier);
         Logger.recordOutput("Drive/ Position", swerveDrive.getPose());
     }

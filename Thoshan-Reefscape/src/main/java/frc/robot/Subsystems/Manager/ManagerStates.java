@@ -22,12 +22,6 @@ public enum ManagerStates implements SubsystemStates{
         ElevatorStates.IDLE
     );
 
-    
-
-
-
-
-
     private String stateString = "";
 	private CoarlerStates coaralerState;
 	private PassThroughStates passThroughState;
@@ -35,10 +29,10 @@ public enum ManagerStates implements SubsystemStates{
 	private ElevatorStates elevatorState;
 
 
-    private ManagerStates ( String stateString, CoarlerStates coaralerState, PassThroughStates passThoughState, ElevatorStates elevatorState) {
+    private ManagerStates ( String stateString, CoarlerStates coaralerState, PassThroughStates passThroughStates, ElevatorStates elevatorState) {
         this.stateString = stateString;
         this.coaralerState = coaralerState;
-        this.passThroughState = passThroughState;
+        this.passThroughState = passThroughStates;
         this.elevatorState = elevatorState;
     }
 

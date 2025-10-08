@@ -28,7 +28,7 @@ public class Drive extends Subsystem<DriveStates>{
 
     @Override
     protected void runState() {
-        io.setTranslationalMultiplier(getState().transitionalMultiplier);
+        io.setTranslationalMultiplier(getState().getTranslationalMultiplier());
         io.setRotMultiplier(getState().rotMultiplier);
         io.driveCommands(xboxController.getLeftX(), xboxController.getLeftY(), xboxController.getRightX(), true);
         io.logData();

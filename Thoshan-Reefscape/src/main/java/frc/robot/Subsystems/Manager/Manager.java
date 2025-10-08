@@ -1,9 +1,5 @@
 package frc.robot.Subsystems.Manager;
 
-import static frc.robot.GlobalConstants.xboxController;
-
-import java.util.function.BooleanSupplier;
-
 import org.littletonrobotics.junction.Logger;
 import org.team7525.subsystem.Subsystem;
 
@@ -51,7 +47,7 @@ public class Manager extends Subsystem<ManagerStates>{
         Coaraler.getInstance().setState(getState().getCoarlerState());
         Elevator.getInstance().setState(getState().getElevatorState());
 
-        Logger.recordOutput("Manger/ State tine", getStateTime());
+        Logger.recordOutput("Manger/ State time", getStateTime());
 		Logger.recordOutput("Manager/ State String", getState().getStateString());
 
         PassThrough.getInstance().periodic();

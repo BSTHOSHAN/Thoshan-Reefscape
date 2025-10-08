@@ -4,7 +4,6 @@ import static frc.robot.Subsystems.Elevator.ElevotorConstants.*;
 
 import org.team7525.subsystem.SubsystemStates;
 
-import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.units.measure.Distance;
 
 public enum ElevatorStates implements SubsystemStates{
