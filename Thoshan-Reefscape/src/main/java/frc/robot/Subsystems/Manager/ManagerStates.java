@@ -32,14 +32,26 @@ public enum ManagerStates implements SubsystemStates{
 	private CoarlerStates coaralerState;
 	private PassThroughStates passThroughState;
 
-	private ElevatorStates ElavotorState;
+	private ElevatorStates elevatorState;
 
 
-    private ManagerStates ( String stateString, CoarlerStates coaralerState, PassThroughStates passThoughState, ElevatorStates ElavatorState) {
+    private ManagerStates ( String stateString, CoarlerStates coaralerState, PassThroughStates passThoughState, ElevatorStates elevatorState) {
         this.stateString = stateString;
         this.coaralerState = coaralerState;
         this.passThroughState = passThroughState;
-        this.ElavotorState = ElavatorState;
+        this.elevatorState = elevatorState;
+    }
+
+
+    public CoarlerStates getCoarlerState() {
+        return coaralerState;
+
+    }
+    public PassThroughStates getPassThoughState() {
+        return passThroughState;
+    }
+    public ElevatorStates getElevatorState() {
+        return elevatorState;
     }
 }   
 

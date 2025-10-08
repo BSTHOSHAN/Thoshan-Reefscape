@@ -4,7 +4,12 @@
 
 package frc.robot;
 
+
+import org.littletonrobotics.junction.Logger;
+import org.littletonrobotics.junction.networktables.NT4Publisher;
+
 import edu.wpi.first.wpilibj.TimedRobot;
+import frc.robot.Subsystems.Manager.Manager;
 
 /**
  * The methods in this class are called automatically corresponding to each mode, as described in
@@ -16,7 +21,17 @@ public class Robot extends TimedRobot {
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
+Manager manager;
+
   public Robot() {}
+
+@Override
+public void robotInit() {
+  Logger.addDataReceiver(new NT4Publisher());
+  Logger.start();
+  manager = Manager.getInstance();
+}
+
 
   @Override
   public void robotPeriodic() {}

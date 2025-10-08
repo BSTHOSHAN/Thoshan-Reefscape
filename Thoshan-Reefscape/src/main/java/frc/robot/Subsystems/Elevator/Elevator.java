@@ -4,7 +4,7 @@ import static frc.robot.GlobalConstants.ROBOT_MODE;
 
 import org.team7525.subsystem.Subsystem;
 
-import frc.robot.Subsystems.PassThrough.PassThroughStates;
+
 
 public class Elevator extends Subsystem<ElevatorStates>{
     
@@ -19,7 +19,13 @@ public class Elevator extends Subsystem<ElevatorStates>{
             case TESTING -> new ElevatorIONeo();
         };
     }
-
+    
+    public static Elevator getInstance() {
+        if(instance == null) {
+            instance = new Elevator();
+        }
+        return instance;
+    }
 
 
     @Override

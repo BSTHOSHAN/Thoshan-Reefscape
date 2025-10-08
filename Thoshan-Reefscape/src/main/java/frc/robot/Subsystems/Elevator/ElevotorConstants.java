@@ -23,7 +23,7 @@ public class ElevotorConstants {
     public static final Distance IDLE_HEIGHT = Inches.of(0);
     public static final Distance ALGAE_LOW_HEIGHT = Inches.of(0);
     public static final Distance ALGAE_HIGH_HEIGHT = Inches.of(0);
-    public static final Distance CLIMBING_HEIGHT = Inches.of(0);
+
 
 	public static final Distance METERS_PER_ROTATION = Meters.of((1 / GEARING) * (2 * Math.PI * DRUM_RADIUS.in(Meters)));	
 

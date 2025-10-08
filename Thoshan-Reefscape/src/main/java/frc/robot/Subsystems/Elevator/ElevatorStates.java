@@ -14,7 +14,6 @@ public enum ElevatorStates implements SubsystemStates{
     L3(L3_HEIGHT),
     ALGAE_HIGH(ALGAE_HIGH_HEIGHT),
     L4(L4_HEIGHT),
-    CLIMBING(CLIMBING_HEIGHT),
     ALGAE_LOW(ALGAE_LOW_HEIGHT);
 
     private Distance position;
