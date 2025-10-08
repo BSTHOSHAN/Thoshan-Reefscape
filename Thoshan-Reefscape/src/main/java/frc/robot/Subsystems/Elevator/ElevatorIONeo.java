@@ -1,10 +1,7 @@
 package frc.robot.Subsystems.Elevator;
 
 import static edu.wpi.first.units.Units.Degree;
-import static edu.wpi.first.units.Units.Inches;
 import static edu.wpi.first.units.Units.Meters;
-import static edu.wpi.first.units.Units.Rotations;
-import static edu.wpi.first.units.Units.RotationsPerSecond;
 import static frc.robot.Subsystems.Elevator.ElevotorConstants.*;
 
 import org.littletonrobotics.junction.Logger;
@@ -12,7 +9,6 @@ import org.littletonrobotics.junction.Logger;
 import com.ctre.phoenix6.hardware.TalonFX;
 
 import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.units.measure.Distance;
 
 public class ElevatorIONeo implements ElevatorIO{
@@ -25,12 +21,16 @@ public class ElevatorIONeo implements ElevatorIO{
 
         leftMotor = new TalonFX( 12);
         rightMotor = new TalonFX(13);
+        // Make right motor follow left motor
 
         elevatorController = ELEVATOR_CONTROLLER.get();
     }
 
     @Override
-    public void setHieght(Distance targetHeight) {
+    public void setHeight(Distance targetHeight) {
+        /*
+         * You only need to calculate the pid once. THe right motor should follow the left motor.
+         */
         var position = leftMotor.getPosition().getValue().in(Degree);
         leftMotor.set(elevatorController.calculate(leftMotor.getPosition().getValueAsDouble() * METERS_PER_ROTATION.in(Meters), targetHeight.in(Meters) * -1));
         rightMotor.set(elevatorController.calculate(rightMotor.getPosition().getValueAsDouble() * METERS_PER_ROTATION.in(Meters), targetHeight.in(Meters)));

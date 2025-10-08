@@ -1,13 +1,11 @@
 package frc.robot.Subsystems.PassThrough;
 
-import static edu.wpi.first.units.Units.Degree;
 import static edu.wpi.first.units.Units.RotationsPerSecond;
 import static frc.robot.GlobalConstants.ROBOT_MODE;
 
 import java.util.function.Supplier;
 
 import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.units.measure.AngularVelocity;
 
 public class PassThroughConstants {

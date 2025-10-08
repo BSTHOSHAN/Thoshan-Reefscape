@@ -10,7 +10,7 @@ public class PassThrough extends Subsystem<PassThroughStates>{
     private static PassThrough instance;
 
     private PassThrough() {
-        super("Climber", PassThroughStates.IDLE);
+        super("Pass Through", PassThroughStates.IDLE);
         this.io = switch(ROBOT_MODE) {
             case REAL -> new PassThroughIONeo();
             case TESTING -> new PassThroughIONeo();

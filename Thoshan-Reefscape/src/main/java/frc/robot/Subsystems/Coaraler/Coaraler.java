@@ -4,12 +4,6 @@ import static frc.robot.GlobalConstants.ROBOT_MODE;
 
 import org.team7525.subsystem.Subsystem;
 
-
-import frc.robot.Robot;
-import frc.robot.GlobalConstants.RobotMode;
-
-
-
 public class Coaraler extends Subsystem<CoarlerStates>{
 
     public static Coaraler instance;
@@ -18,8 +12,8 @@ public class Coaraler extends Subsystem<CoarlerStates>{
     private Coaraler() {
         super("Coaraler",  CoarlerStates.IDLE);
         this.io = switch(ROBOT_MODE) {
-            case REAL -> new CoaralerIONeo();
-            case TESTING -> new CoaralerIONeo();
+            case REAL -> new CoaralerIOTalon();
+            case TESTING -> new CoaralerIOTalon();
         };
     }
     public static Coaraler getInstance() {

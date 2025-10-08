@@ -20,6 +20,4 @@ public class CoaralerConstants {
 			case REAL -> new PIDController(0.1, 0, 0);
 			case TESTING -> new PIDController(0.1, 0, 0);
 	};
-
-    
 }

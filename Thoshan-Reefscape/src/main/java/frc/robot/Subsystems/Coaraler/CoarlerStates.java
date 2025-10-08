@@ -5,7 +5,6 @@ import static frc.robot.Subsystems.Coaraler.CoaralerConstants.*;
 import org.team7525.subsystem.SubsystemStates;
 
 import edu.wpi.first.units.measure.AngularVelocity;
-import edu.wpi.first.wpilibj2.command.Subsystem;
 
 
 public enum CoarlerStates implements SubsystemStates {
@@ -15,7 +14,7 @@ public enum CoarlerStates implements SubsystemStates {
     
     private AngularVelocity wheelSpeed;
 
-    CoarlerStates (AngularVelocity wheeSpeed) {
+    CoarlerStates(AngularVelocity wheelSpeed) {
         this.wheelSpeed = wheelSpeed;
     }
     public AngularVelocity getWheelSpeed() {
