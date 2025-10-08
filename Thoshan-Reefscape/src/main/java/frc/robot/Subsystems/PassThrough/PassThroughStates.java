@@ -1,6 +1,5 @@
 package frc.robot.Subsystems.PassThrough;
 
-import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.units.measure.AngularVelocity;
 
 import static frc.robot.Subsystems.PassThrough.PassThroughConstants.*;

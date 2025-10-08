@@ -6,6 +6,8 @@ import frc.robot.Subsystems.PassThrough.PassThroughStates;
 import frc.robot.Subsystems.Coaraler.CoarlerStates;
 import frc.robot.Subsystems.Elevator.ElevatorStates;
 
+import static frc.robot.Subsystems.Manager.ManagerConstants.*;
+
 
 
 public enum ManagerStates implements SubsystemStates{
@@ -20,9 +22,24 @@ public enum ManagerStates implements SubsystemStates{
         CoarlerStates.INTAKING,
         PassThroughStates.INTAKING,
         ElevatorStates.IDLE
-    );
+    ),
+    TRANSITIONING_SCORING_REEF(
+		"Transitioning Scoring",
+		CoarlerStates.IDLE,
+        PassThroughStates.IDLE,
+    	REEF_SCORING_LEVELS.get(Manager.getInstance().getReefScoringLevel())
+	),
+    SCORING_REEF(
+		"Transitioning Scoring",
+		CoarlerStates.SCORING,
+        PassThroughStates.IDLE,
+    	REEF_SCORING_LEVELS.get(Manager.getInstance().getReefScoringLevel())
+	);
 
-    private String stateString = "";
+
+
+
+    private String stateString;
 	private CoarlerStates coaralerState;
 	private PassThroughStates passThroughState;
 

@@ -21,7 +21,8 @@ public class Manager extends Subsystem<ManagerStates>{
 
     private Manager() {
         super( "Manager", ManagerStates.IDLE);
-
+        
+        
         addRunnableTrigger(() -> this.reefScoringLevel = 1, () -> xboxController.getPOV() == 180);
         addRunnableTrigger(() -> this.reefScoringLevel = 2, () -> xboxController.getPOV() == 90);
         addRunnableTrigger(() -> this.reefScoringLevel = 3, () -> xboxController.getPOV() == 270);
@@ -39,6 +40,10 @@ public class Manager extends Subsystem<ManagerStates>{
 		}
 		return instance;
 	}
+
+    public int getReefScoringLevel() {
+        return reefScoringLevel;
+    }
 
 
     @Override
