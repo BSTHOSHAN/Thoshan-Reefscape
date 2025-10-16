@@ -13,11 +13,11 @@ import swervelib.parser.SwerveParser;
 import static frc.robot.Subsystems.Drive.DriveConstants.*;
 public class DriveIOReal implements DriveIO{
     SwerveDrive swerveDrive;
-    double translationalonalMultiplier;
+    double translationalMultiplier;
     double rotMultiplier;
 
     public DriveIOReal() {
-        		try {
+        try {
 			File directory = new File(Filesystem.getDeployDirectory(), "swerve");
 			double maxSpeed = Units.feetToMeters(MAX_SPEED);
 			swerveDrive = new SwerveParser(directory).createSwerveDrive(maxSpeed, STARTING_POSE);
@@ -27,8 +27,8 @@ public class DriveIOReal implements DriveIO{
     }
 
     @Override
-    public void setTranslationalMultiplier(double translationalonalMultiplier) {
-        this.translationalonalMultiplier = translationalonalMultiplier;
+    public void setTranslationalMultiplier(double translationalMultiplier) {
+        this.translationalMultiplier = translationalMultiplier;
     }
 
     @Override
@@ -37,13 +37,13 @@ public class DriveIOReal implements DriveIO{
     }
 
     @Override
-    public void driveCommands(double xtranslation, double ytranslation, double rotation, boolean fieldrelative) {
-        swerveDrive.drive(new Translation2d(translationalonalMultiplier * xtranslation, translationalonalMultiplier * ytranslation), rotMultiplier * rotation, fieldrelative, false);
+    public void driveCommands(double xTranslation, double yTranslation, double rotation, boolean fieldRelative) { 
+        swerveDrive.drive(new Translation2d(translationalMultiplier * xTranslation, translationalMultiplier * yTranslation), rotMultiplier * rotation, fieldRelative, false);
     }
 
     @Override
     public void logData() {
-        Logger.recordOutput("Drive/ Translational Multiplier", translationalonalMultiplier);
+        Logger.recordOutput("Drive/ Translational Multiplier", translationalMultiplier);
         Logger.recordOutput("Drive/ Rotational Multiplier", rotMultiplier);
         Logger.recordOutput("Drive/ Position", swerveDrive.getPose());
     }

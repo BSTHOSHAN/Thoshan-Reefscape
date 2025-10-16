@@ -15,6 +15,7 @@ public class Drive extends Subsystem<DriveStates>{
         super("Drive", DriveStates.DRIVE_NORMAL);
         this.io = switch(ROBOT_MODE) {
             case REAL -> new DriveIOReal();
+            case SIM -> new DriveIOSim();
             case TESTING -> new DriveIOReal();
         };
     }
@@ -28,9 +29,9 @@ public class Drive extends Subsystem<DriveStates>{
 
     @Override
     protected void runState() {
-        io.setTranslationalMultiplier(getState().transitionalMultiplier);
+        io.setTranslationalMultiplier(getState().getTranslationalMultiplier());
         io.setRotMultiplier(getState().rotMultiplier);
-        io.driveCommands(xboxController.getLeftX(), xboxController.getLeftY(), xboxController.getRightX(), true);
+        io.driveCommands(xboxController.getLeftX(), xboxController.getLeftY(), xboxController.getRightX(), false);
         io.logData();
     }
     

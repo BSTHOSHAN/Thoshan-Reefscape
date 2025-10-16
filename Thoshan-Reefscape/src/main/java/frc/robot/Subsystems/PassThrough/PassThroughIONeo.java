@@ -6,15 +6,11 @@ import static frc.robot.Subsystems.PassThrough.PassThroughConstants.*;
 import org.littletonrobotics.junction.Logger;
 
 import com.ctre.phoenix6.hardware.TalonFX;
-import com.revrobotics.spark.SparkMax;
-import com.revrobotics.spark.SparkLowLevel.MotorType;
-
 import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.units.AngularVelocityUnit;
-import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.units.measure.AngularVelocity;
 
 public class PassThroughIONeo implements PassThroughIO{
+    // Change variable names so that it's not climber
     TalonFX climberMotor;
     PIDController climbController;
     AngularVelocity targetSpeed;

@@ -8,17 +8,17 @@ public enum DriveStates implements SubsystemStates{
     DRIVE_NORMAL(DRIVE_NORMAL_ROTATION_MULTIPLER, DRIVE_NORMAL_TRANSITIONAL_MULTIPLER);
 
     double rotMultiplier;
-    double transitionalMultiplier;
+    double translationalonalMultiplier;
 
-    private DriveStates(double rotMultiplier, double translationalonalMultiplier) {
+    private DriveStates(double rotMultiplier, double translationalMultiplier) {
         this.rotMultiplier = rotMultiplier;
-        this.transitionalMultiplier = transitionalMultiplier;
+        this.translationalonalMultiplier = translationalMultiplier;
     }
 
     public double getRotMultiplier() {
         return rotMultiplier;
     }
-    public double getTransitionalMultiplier() {
-        return transitionalMultiplier;
+    public double getTranslationalMultiplier() {
+        return translationalonalMultiplier;
     }
 }

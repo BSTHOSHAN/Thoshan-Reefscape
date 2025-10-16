@@ -1,8 +1,8 @@
-package frc.robot.Subsystems.Coaraler;
+package frc.robot.Subsystems.Coraler;
 
 import edu.wpi.first.units.measure.AngularVelocity;
 
-public interface CoaralerIO {
+public interface CoralerIO {
 
     void setWheelSpeed(AngularVelocity wheelSpeed); 
     

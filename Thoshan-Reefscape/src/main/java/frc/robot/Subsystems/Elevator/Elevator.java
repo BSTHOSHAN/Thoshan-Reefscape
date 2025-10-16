@@ -4,18 +4,16 @@ import static frc.robot.GlobalConstants.ROBOT_MODE;
 
 import org.team7525.subsystem.Subsystem;
 
-
-
 public class Elevator extends Subsystem<ElevatorStates>{
     
     ElevatorIO io;
     private static Elevator instance;
     
-    
     private Elevator() {
         super("Elevator", ElevatorStates.IDLE);
         this.io = switch(ROBOT_MODE) {
             case REAL -> new ElevatorIONeo();
+            case SIM -> new ElevatorIOSim();
             case TESTING -> new ElevatorIONeo();
         };
     }
@@ -30,7 +28,7 @@ public class Elevator extends Subsystem<ElevatorStates>{
 
     @Override
     protected void runState() {
-        io.setHieght(getState().getPosition());
+        io.setHeight(getState().getPosition());
         io.logData();
     }
     

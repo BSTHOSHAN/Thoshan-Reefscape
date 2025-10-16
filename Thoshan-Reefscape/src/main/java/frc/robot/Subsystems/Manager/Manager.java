@@ -1,14 +1,10 @@
 package frc.robot.Subsystems.Manager;
 
-import static frc.robot.GlobalConstants.xboxController;
-
-import java.util.function.BooleanSupplier;
-
 import org.littletonrobotics.junction.Logger;
 import org.team7525.subsystem.Subsystem;
 
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.Subsystems.Coaraler.Coaraler;
+import frc.robot.Subsystems.Coraler.Coraler;
 import frc.robot.Subsystems.Drive.Drive;
 import frc.robot.Subsystems.Elevator.Elevator;
 import frc.robot.Subsystems.PassThrough.PassThrough;
@@ -25,7 +21,8 @@ public class Manager extends Subsystem<ManagerStates>{
 
     private Manager() {
         super( "Manager", ManagerStates.IDLE);
-
+        
+        
         addRunnableTrigger(() -> this.reefScoringLevel = 1, () -> xboxController.getPOV() == 180);
         addRunnableTrigger(() -> this.reefScoringLevel = 2, () -> xboxController.getPOV() == 90);
         addRunnableTrigger(() -> this.reefScoringLevel = 3, () -> xboxController.getPOV() == 270);
@@ -44,18 +41,22 @@ public class Manager extends Subsystem<ManagerStates>{
 		return instance;
 	}
 
+    public int getReefScoringLevel() {
+        return reefScoringLevel;
+    }
+
 
     @Override
     protected void runState() {
         PassThrough.getInstance().setState(getState().getPassThoughState());
-        Coaraler.getInstance().setState(getState().getCoarlerState());
+        Coraler.getInstance().setState(getState().getCoarlerState());
         Elevator.getInstance().setState(getState().getElevatorState());
 
-        Logger.recordOutput("Manger/ State tine", getStateTime());
+        Logger.recordOutput("Manger/ State time", getStateTime());
 		Logger.recordOutput("Manager/ State String", getState().getStateString());
 
         PassThrough.getInstance().periodic();
-        Coaraler.getInstance().periodic();
+        Coraler.getInstance().periodic();
         Elevator.getInstance().periodic();
         Drive.getInstance().periodic();
     }
