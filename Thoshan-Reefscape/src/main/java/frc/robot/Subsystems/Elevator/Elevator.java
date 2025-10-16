@@ -13,6 +13,7 @@ public class Elevator extends Subsystem<ElevatorStates>{
         super("Elevator", ElevatorStates.IDLE);
         this.io = switch(ROBOT_MODE) {
             case REAL -> new ElevatorIONeo();
+            case SIM -> new ElevatorIOSim();
             case TESTING -> new ElevatorIONeo();
         };
     }

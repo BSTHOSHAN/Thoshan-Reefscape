@@ -14,9 +14,12 @@ public class PassThroughConstants {
 
     public static final int PASS_THROUGH_MOTOR_ID = 29;
 
+	public static final double MAX_VOLTAGE = 9;
+
     	public static final Supplier<PIDController> WHEEL_SPEED_CONTROLLER = () ->
 		switch (ROBOT_MODE) {
 			case REAL -> new PIDController(0.1, 0, 0);
+			case SIM -> new PIDController(0.1, 0, 0);
 			case TESTING -> new PIDController(0.1, 0, 0);
 		};
 

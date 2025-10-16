@@ -4,7 +4,7 @@ import org.littletonrobotics.junction.Logger;
 import org.team7525.subsystem.Subsystem;
 
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.Subsystems.Coaraler.Coaraler;
+import frc.robot.Subsystems.Coraler.Coraler;
 import frc.robot.Subsystems.Drive.Drive;
 import frc.robot.Subsystems.Elevator.Elevator;
 import frc.robot.Subsystems.PassThrough.PassThrough;
@@ -49,14 +49,14 @@ public class Manager extends Subsystem<ManagerStates>{
     @Override
     protected void runState() {
         PassThrough.getInstance().setState(getState().getPassThoughState());
-        Coaraler.getInstance().setState(getState().getCoarlerState());
+        Coraler.getInstance().setState(getState().getCoarlerState());
         Elevator.getInstance().setState(getState().getElevatorState());
 
         Logger.recordOutput("Manger/ State time", getStateTime());
 		Logger.recordOutput("Manager/ State String", getState().getStateString());
 
         PassThrough.getInstance().periodic();
-        Coaraler.getInstance().periodic();
+        Coraler.getInstance().periodic();
         Elevator.getInstance().periodic();
         Drive.getInstance().periodic();
     }

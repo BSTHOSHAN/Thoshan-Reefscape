@@ -7,6 +7,7 @@ import static frc.robot.GlobalConstants.ROBOT_MODE;
 import java.util.function.Supplier;
 
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.units.measure.Distance;
 
@@ -27,10 +28,13 @@ public class ElevotorConstants {
 
 	public static final Distance METERS_PER_ROTATION = Meters.of((1 / GEARING) * (2 * Math.PI * DRUM_RADIUS.in(Meters)));	
 
+	public static final Translation3d ZEROED_POSITION_TRANSLATION = new Translation3d(0.31, 0, 0.24);
+
 
     public static final Supplier<PIDController> ELEVATOR_CONTROLLER = () ->
 	switch (ROBOT_MODE) {
 		case REAL -> new PIDController(0.1, 0, 0);
+		case SIM -> new PIDController(0.1, 0, 0);
 		case TESTING -> new PIDController(0.1, 0, 0);
 	};
 

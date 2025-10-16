@@ -1,8 +1,8 @@
-package frc.robot.Subsystems.Coaraler;
+package frc.robot.Subsystems.Coraler;
 
 
 import static edu.wpi.first.units.Units.RotationsPerSecond;
-import static frc.robot.Subsystems.Coaraler.CoaralerConstants.*;
+import static frc.robot.Subsystems.Coraler.CoralerConstants.*;
 
 import org.littletonrobotics.junction.Logger;
 
@@ -10,12 +10,12 @@ import com.ctre.phoenix6.hardware.TalonFX;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.units.measure.AngularVelocity;
 
-public class CoaralerIOTalon implements CoaralerIO{
+public class CoraleIOReal implements CoralerIO{
     TalonFX wheelMotor;
     PIDController wheelController;
     AngularVelocity targetSpeed;
 
-    public CoaralerIOTalon() {
+    public CoraleIOReal() {
         wheelMotor = new TalonFX(WHEEL_MOTOR_ID);
         wheelController = WHEEL_CONTROLLER.get();
     }

@@ -27,8 +27,8 @@ public class DriveIOReal implements DriveIO{
     }
 
     @Override
-    public void setTranslationalMultiplier(double translationalonalMultiplier) {
-        this.translationalMultiplier = translationalonalMultiplier;
+    public void setTranslationalMultiplier(double translationalMultiplier) {
+        this.translationalMultiplier = translationalMultiplier;
     }
 
     @Override
@@ -37,8 +37,8 @@ public class DriveIOReal implements DriveIO{
     }
 
     @Override
-    public void driveCommands(double xtranslation, double ytranslation, double rotation, boolean fieldrelative) { //camel case pls
-        swerveDrive.drive(new Translation2d(translationalMultiplier * xtranslation, translationalMultiplier * ytranslation), rotMultiplier * rotation, fieldrelative, false);
+    public void driveCommands(double xTranslation, double yTranslation, double rotation, boolean fieldRelative) { 
+        swerveDrive.drive(new Translation2d(translationalMultiplier * xTranslation, translationalMultiplier * yTranslation), rotMultiplier * rotation, fieldRelative, false);
     }
 
     @Override

@@ -9,12 +9,13 @@ public class GlobalConstants {
 
 	public enum RobotMode {
 		REAL,
-		TESTING
+		TESTING,
+		SIM
 	}
 
     public static final RobotMode ROBOT_MODE = "Crash".equals(System.getenv("CI_NAME")) ||
     !Robot.isReal()
-    ? RobotMode.TESTING
+    ? RobotMode.SIM
     : RobotMode.REAL;
 }
 
