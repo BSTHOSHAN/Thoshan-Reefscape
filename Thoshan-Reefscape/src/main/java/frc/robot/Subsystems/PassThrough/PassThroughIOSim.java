@@ -19,28 +19,25 @@ public class PassThroughIOSim implements PassThroughIO {
 
     public PassThroughIOSim() {
 		wheels = new FlywheelSim(
-			LinearSystemId.createFlywheelSystem(DCMotor.getNEO(2), 1, 1),
-			DCMotor.getNEO(2)
+			LinearSystemId.createFlywheelSystem(DCMotor.getNEO(1), 2, 1),
+			DCMotor.getNEO(1)
 		);
         wheelController = WHEEL_SPEED_CONTROLLER.get();
-        targetSpeed = RotationsPerSecond.zero();
-    }
+
+    }   
 
 
     @Override
-    public void setWheelSpeed(edu.wpi.first.units.measure.AngularVelocity wheelSpeed) {
-        wheels.setInputVoltage(
-			MAX_VOLTAGE *
-			wheelController.calculate(
-				wheels.getAngularVelocityRPM() / 60,
-				wheelSpeed.in(RotationsPerSecond)
-			)
-		);
+    public void setWheelSpeed(AngularVelocity wheelSpeed) {
+        targetSpeed = wheelSpeed;
+        wheels.setInputVoltage(12 * wheelController.calculate(wheels.getAngularVelocityRPM() / 60, targetSpeed.in(RotationsPerSecond)));
     }
 
     @Override
     public void logData() {
+        wheels.update(0.02);
+        Logger.recordOutput("PassThrough/Calculation", wheelController.calculate( wheels.getAngularVelocityRPM() / 60, targetSpeed.in(RotationsPerSecond)));
         Logger.recordOutput("PassThrough/Wheel Speed", wheels.getAngularVelocityRPM() / 60);
-        Logger.recordOutput("PassThrough/Target Speed", targetSpeed);
+        Logger.recordOutput("PassThrough/Target Speed", targetSpeed.in(RotationsPerSecond));
     }
 }

@@ -19,7 +19,7 @@ public class ElevatorIONeo implements ElevatorIO{
 
     public ElevatorIONeo() {
 
-        leftMotor = new TalonFX( 12);
+        leftMotor = new TalonFX(12);
         rightMotor = new TalonFX(13);
 
         elevatorController = ELEVATOR_CONTROLLER.get();

@@ -20,7 +20,7 @@ public class CoralerIOSim implements CoralerIO {
 
 
     public CoralerIOSim() {
-        		wheels = new FlywheelSim(
+        wheels = new FlywheelSim(
 			LinearSystemId.createFlywheelSystem(DCMotor.getNEO(2), 1, 1),
 			DCMotor.getNEO(2)
 		);
@@ -31,20 +31,20 @@ public class CoralerIOSim implements CoralerIO {
 
     @Override
     public void setWheelSpeed(edu.wpi.first.units.measure.AngularVelocity wheelSpeed) {
-        wheels.setInputVoltage(
-			MAX_VOLTAGE *
-			wheelController.calculate(
+        wheels.setInputVoltage(12 *  wheelController.calculate(
 				wheels.getAngularVelocityRPM() / 60,
 				wheelSpeed.in(RotationsPerSecond)
 			)
 		);
+        targetSpeed = wheelSpeed;
         
     }
 
     @Override
     public void logData() {
+        wheels.update(0.02);
         Logger.recordOutput("Coraler/Wheel Speed", wheels.getAngularVelocityRPM() / 60);
-        Logger.recordOutput("Coraler/Target Speed", targetSpeed);
+        Logger.recordOutput("Coraler/Target Speed", targetSpeed.in(RotationsPerSecond));
         
     }
     

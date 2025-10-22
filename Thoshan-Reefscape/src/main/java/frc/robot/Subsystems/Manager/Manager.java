@@ -33,9 +33,9 @@ public class Manager extends Subsystem<ManagerStates>{
         addTrigger(TRANSITIONING_SCORING_REEF, SCORING_REEF, () -> xboxController.getYButtonPressed());
         addTrigger(SCORING_REEF, IDLE, () -> xboxController.getYButtonPressed());
 
-
-        addTrigger( IDLE, INTAKING_CORALER, () -> xboxController.getAButtonPressed());
-        addTrigger( INTAKING_CORALER, IDLE , () -> xboxController.getAButtonPressed());
+            
+        addTrigger( IDLE, INTAKING_CORALER, () -> xboxController.getXButtonPressed());
+        addTrigger( INTAKING_CORALER, IDLE , () -> xboxController.getXButtonPressed());
 
         addTrigger(IDLE, PASS_THORUGH_INTAKE, () -> xboxController.getBButtonPressed());
         addTrigger( PASS_THORUGH_INTAKE, IDLE, () -> xboxController.getBButtonPressed());

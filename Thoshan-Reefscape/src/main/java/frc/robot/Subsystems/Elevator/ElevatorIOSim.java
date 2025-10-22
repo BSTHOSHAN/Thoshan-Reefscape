@@ -30,7 +30,7 @@ public class ElevatorIOSim implements ElevatorIO {
 		.3,
 		0,
 		Units.degreesToRadians(180),
-		true,
+		false,
 		0);
 
 
