@@ -8,6 +8,8 @@ import frc.robot.Subsystems.Elevator.ElevatorStates;
 
 import static frc.robot.Subsystems.Manager.ManagerConstants.*;
 
+import java.util.function.Supplier;
+
 
 
 public enum ManagerStates implements SubsystemStates{
@@ -15,26 +17,31 @@ public enum ManagerStates implements SubsystemStates{
         "Idle", 
         CoralerStates.IDLE,
         PassThroughStates.IDLE,
-        ElevatorStates.IDLE      
+        () ->ElevatorStates.IDLE      
     ),
     INTAKING_CORALER(
         "Intaking Coraler", 
         CoralerStates.INTAKING,
         PassThroughStates.INTAKING,
-        ElevatorStates.IDLE
+        () ->ElevatorStates.IDLE
     ),
     TRANSITIONING_SCORING_REEF(
 		"Transitioning Scoring",
 		CoralerStates.IDLE,
         PassThroughStates.IDLE,
-    	REEF_SCORING_LEVELS.get(Manager.getInstance().getReefScoringLevel())
+    	() -> REEF_SCORING_LEVELS.get(Manager.getInstance().getReefScoringLevel())
 	),
     SCORING_REEF(
-		"Transitioning Scoring",
+		"Scoring Reef",
 		CoralerStates.SCORING,
         PassThroughStates.IDLE,
-    	REEF_SCORING_LEVELS.get(Manager.getInstance().getReefScoringLevel())
-	);
+    	() -> REEF_SCORING_LEVELS.get(Manager.getInstance().getReefScoringLevel())
+	),
+    PASS_THORUGH_INTAKE( "Pass Through Intake",
+        CoralerStates.IDLE,
+        PassThroughStates.INTAKING,
+        () -> ElevatorStates.IDLE
+    );
 
 
 
@@ -42,14 +49,17 @@ public enum ManagerStates implements SubsystemStates{
     private String stateString;
 	private CoralerStates coaralerState;
 	private PassThroughStates passThroughState;
-	private ElevatorStates elevatorState;
+	private Supplier<ElevatorStates> elevatorState;
 
 
-    private ManagerStates ( String stateString, CoralerStates coaralerState, PassThroughStates passThroughStates, ElevatorStates elevatorState) {
+    private ManagerStates ( String stateString, CoralerStates coaralerState, PassThroughStates passThroughStates, Supplier<ElevatorStates> elevatorState) {
         this.stateString = stateString;
         this.coaralerState = coaralerState;
         this.passThroughState = passThroughStates;
         this.elevatorState = elevatorState;
+    }
+    public String getStateString() {
+        return stateString;
     }
 
 
@@ -60,7 +70,7 @@ public enum ManagerStates implements SubsystemStates{
     public PassThroughStates getPassThoughState() {
         return passThroughState;
     }
-    public ElevatorStates getElevatorState() {
+    public Supplier<ElevatorStates> getElevatorState() {
         return elevatorState;
     }
 }   

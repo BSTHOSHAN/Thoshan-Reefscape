@@ -27,11 +27,18 @@ public class Manager extends Subsystem<ManagerStates>{
         addRunnableTrigger(() -> this.reefScoringLevel = 2, () -> xboxController.getPOV() == 90);
         addRunnableTrigger(() -> this.reefScoringLevel = 3, () -> xboxController.getPOV() == 270);
         addRunnableTrigger(() -> this.reefScoringLevel = 4, () -> xboxController.getPOV() == 0);
+        // addRunnableTrigger(() -> this.reefScoringLevel = 0, () -> xboxController.getXButtonPressed());
 
-        addTrigger( IDLE, INTAKING_CORALER, () -> xboxController.getLeftBumperButtonPressed());
-        addTrigger( INTAKING_CORALER, IDLE , () -> xboxController.getLeftBumperButtonPressed());
+        addTrigger(IDLE, TRANSITIONING_SCORING_REEF, ()-> xboxController.getYButtonPressed());
+        addTrigger(TRANSITIONING_SCORING_REEF, SCORING_REEF, () -> xboxController.getYButtonPressed());
+        addTrigger(SCORING_REEF, IDLE, () -> xboxController.getYButtonPressed());
 
 
+        addTrigger( IDLE, INTAKING_CORALER, () -> xboxController.getAButtonPressed());
+        addTrigger( INTAKING_CORALER, IDLE , () -> xboxController.getAButtonPressed());
+
+        addTrigger(IDLE, PASS_THORUGH_INTAKE, () -> xboxController.getBButtonPressed());
+        addTrigger( PASS_THORUGH_INTAKE, IDLE, () -> xboxController.getBButtonPressed());
     }
 
     public static Manager getInstance() {
@@ -50,7 +57,7 @@ public class Manager extends Subsystem<ManagerStates>{
     protected void runState() {
         PassThrough.getInstance().setState(getState().getPassThoughState());
         Coraler.getInstance().setState(getState().getCoarlerState());
-        Elevator.getInstance().setState(getState().getElevatorState());
+        Elevator.getInstance().setState(getState().getElevatorState().get());
 
         Logger.recordOutput("Manger/ State time", getStateTime());
 		Logger.recordOutput("Manager/ State String", getState().getStateString());

@@ -17,12 +17,13 @@ import edu.wpi.first.wpilibj.simulation.SingleJointedArmSim;
 
 public class ElevatorIOSim implements ElevatorIO {
 
-    SingleJointedArmSim armSim;
+    SingleJointedArmSim armSim1;
+
     PIDController heightController;
     Distance targetHeight;
 
     public ElevatorIOSim() {
-        armSim = new SingleJointedArmSim(
+        armSim1 = new SingleJointedArmSim(
 		LinearSystemId.createSingleJointedArmSystem(DCMotor.getNEO(1), 0.192383865, 67.5),
 		DCMotor.getNEO(1),
 		67.5,
@@ -31,7 +32,9 @@ public class ElevatorIOSim implements ElevatorIO {
 		Units.degreesToRadians(180),
 		true,
 		0);
-        heightController = new PIDController(1, 0, 0);
+
+
+
 
         heightController = ELEVATOR_CONTROLLER.get();
     }
@@ -41,16 +44,16 @@ public class ElevatorIOSim implements ElevatorIO {
     @Override
     public void setHeight(Distance Height) {
         targetHeight = Height;
-        armSim.setInput(heightController.calculate(armSim.getAngleRads(), targetHeight.in(Meters)));
+        armSim1.setInputVoltage(12 * heightController.calculate(armSim1.getAngleRads() * METERS_PER_ROTATION.in(Meters), targetHeight.in(Meters)));
     }
 
     @Override
     public void logData() {
-        armSim.update(0.02);
-
+        armSim1.update(0.02);
+        Logger.recordOutput("ELevator/ Calculation", heightController.calculate(armSim1.getAngleRads() * METERS_PER_ROTATION.in(Meters), targetHeight.in(Meters)));
         Logger.recordOutput("Elevator/ Target Height", targetHeight);
-        Logger.recordOutput("Elevator/ Current Height", armSim.getAngleRads());
-        Logger.recordOutput("Intake/ Intake Pose", new Pose3d(ZEROED_POSITION_TRANSLATION, new Rotation3d(0, armSim.getAngleRads(), 0)));
+        Logger.recordOutput("Elevator/ Current Height", armSim1.getAngleRads() * METERS_PER_ROTATION.in(Meters));
+        Logger.recordOutput("Intake/ Intake Pose", new Pose3d(ZEROED_POSITION_TRANSLATION, new Rotation3d(0, armSim1.getAngleRads(), 0)));
     }
     
     

@@ -34,7 +34,9 @@ public void robotInit() {
 
 
   @Override
-  public void robotPeriodic() {}
+  public void robotPeriodic() {
+    manager.periodic();
+  }
 
   @Override
   public void autonomousInit() {}

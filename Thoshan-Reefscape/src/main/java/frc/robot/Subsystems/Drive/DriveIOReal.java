@@ -4,6 +4,8 @@ import java.io.File;
 
 import org.littletonrobotics.junction.Logger;
 
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.Filesystem;
@@ -18,11 +20,19 @@ public class DriveIOReal implements DriveIO{
 
     public DriveIOReal() {
         try {
-			File directory = new File(Filesystem.getDeployDirectory(), "swerve");
+			// File directory = new File(Filesystem.getDeployDirectory(), "swerve");
 			double maxSpeed = Units.feetToMeters(MAX_SPEED);
-			swerveDrive = new SwerveParser(directory).createSwerveDrive(maxSpeed, STARTING_POSE);
+			// swerveDrive = new SwerveParser(directory).createSwerveDrive(maxSpeed, STARTING_POSE);
+            File swerveJsonDirectory = new File(Filesystem.getDeployDirectory(), "swerve");
+			swerveDrive = new SwerveParser(swerveJsonDirectory).createSwerveDrive(
+				maxSpeed,
+				new Pose2d(9.9, 4.0, Rotation2d.fromDegrees(0))
+			);
 		} catch (Exception e) {
-			System.out.println("hello");
+            
+			System.out.println('a');
+            System.out.println(e);
+            System.out.println("a");
 		}
     }
 

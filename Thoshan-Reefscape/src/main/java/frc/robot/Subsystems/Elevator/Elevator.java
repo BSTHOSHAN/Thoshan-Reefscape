@@ -2,6 +2,8 @@ package frc.robot.Subsystems.Elevator;
 
 import static frc.robot.GlobalConstants.ROBOT_MODE;
 
+import java.util.function.Supplier;
+
 import org.team7525.subsystem.Subsystem;
 
 public class Elevator extends Subsystem<ElevatorStates>{
@@ -31,5 +33,7 @@ public class Elevator extends Subsystem<ElevatorStates>{
         io.setHeight(getState().getPosition());
         io.logData();
     }
+
+
     
 }
